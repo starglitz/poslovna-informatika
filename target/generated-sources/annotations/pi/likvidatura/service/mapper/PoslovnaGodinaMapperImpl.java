@@ -2,7 +2,7 @@ package pi.likvidatura.service.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
+import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pi.likvidatura.domain.PoslovnaGodina;
@@ -10,8 +10,8 @@ import pi.likvidatura.service.dto.PoslovnaGodinaDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-11-29T08:39:19+0100",
-    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Eclipse Adoptium)"
+    date = "2021-12-07T21:14:33+0100",
+    comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
 public class PoslovnaGodinaMapperImpl implements PoslovnaGodinaMapper {
