@@ -1,13 +1,107 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.align-left {
+  text-align: left;
+  float: left;
+}
+
+.align-right {
+  text-align: right;
+  float: right;
+}
+
+.inline {
+  display: inline;
+}
+
+.margin {
+  margin: 10px;
+}
+
+.margin-sm-top {
+  margin: 17px;
+}
+
+.margin-left {
+  margin-left: 10px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.font-size-1 {
+  font-size: 1rem;
+}
+
+.font-size-2 {
+  font-size: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bg-gray {
+  background-color: #c9c6bd;
+}
+
+.selected-invoice {
+  height: 400px;
+  width: 30%;
+  border: solid black 5px;
+  border-radius: 2px;
+  margin-left: 3px;
+}
+
+.pay-invoice {
+  padding: 20px;
+}
+
+.padding {
+  padding: 10px;
+}
+
+.payment-slip {
+  border: solid black 5px;
+  border-radius: 2px;
+  width: 55%;
+  height: 400px;
+  display: inline;
+  float: left;
+  margin-left: 30px;
+  position: relative;
+}
+
+.payment-slip-table {
+  width: 100%;
+}
+
+.payment-slip-field {
+  width: 350px;
+}
+
+.block {
+  display: block;
+}
+
+.pay-button {
+  float: right;
+  margin-right: 90px;
 }
