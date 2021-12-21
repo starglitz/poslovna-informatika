@@ -2,13 +2,7 @@ package pi.likvidatura.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -37,6 +31,9 @@ public class IzlaznaFaktura implements Serializable {
     @ManyToOne
     private PoslovnaGodina poslovnaGodina;
 
+    @ManyToOne
+    private PoslovniPartner poslovniPartner;
+
     public Long getId() {
         return this.id;
     }
@@ -44,6 +41,19 @@ public class IzlaznaFaktura implements Serializable {
     public IzlaznaFaktura id(Long id) {
         this.setId(id);
         return this;
+    }
+
+    public IzlaznaFaktura(){};
+
+    public IzlaznaFaktura(Long id, String brojFakture,
+                          Double iznosZaPlacanje,
+                          PoslovnaGodina poslovnaGodina,
+                          PoslovniPartner poslovniPartner) {
+        this.id = id;
+        this.brojFakture = brojFakture;
+        this.iznosZaPlacanje = iznosZaPlacanje;
+        this.poslovnaGodina = poslovnaGodina;
+        this.poslovniPartner = poslovniPartner;
     }
 
     public void setId(Long id) {
@@ -87,6 +97,14 @@ public class IzlaznaFaktura implements Serializable {
     public IzlaznaFaktura poslovnaGodina(PoslovnaGodina poslovnaGodina) {
         this.setPoslovnaGodina(poslovnaGodina);
         return this;
+    }
+
+    public PoslovniPartner getPoslovniPartner() {
+        return poslovniPartner;
+    }
+
+    public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
+        this.poslovniPartner = poslovniPartner;
     }
 
     @Override
