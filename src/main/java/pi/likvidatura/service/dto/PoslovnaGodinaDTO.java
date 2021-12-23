@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.PoslovnaGodina;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -48,6 +50,13 @@ public class PoslovnaGodinaDTO implements Serializable {
         this.preduzece = preduzece;
     }
 
+    public PoslovnaGodinaDTO(Long id, Integer godina, Boolean zakljucena, PreduzeceDTO preduzece) {
+        this.id = id;
+        this.godina = godina;
+        this.zakljucena = zakljucena;
+        this.preduzece = preduzece;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,5 +87,10 @@ public class PoslovnaGodinaDTO implements Serializable {
             ", zakljucena='" + getZakljucena() + "'" +
             ", preduzece=" + getPreduzece() +
             "}";
+    }
+
+    public static PoslovnaGodinaDTO fromEntity(PoslovnaGodina godina) {
+        return new PoslovnaGodinaDTO(godina.getId(), godina.getGodina(),
+                godina.getZakljucena(), PreduzeceDTO.fromEntity(godina.getPreduzece()));
     }
 }

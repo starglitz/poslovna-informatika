@@ -1,12 +1,19 @@
-const invoices = [
-  { ID: "01", brojFakture: "1", iznosZaPlacanje: 6000, poslovnaGodina: 2021 },
-  { ID: "02", brojFakture: "2", iznosZaPlacanje: 7000, poslovnaGodina: 2021 },
-  { ID: "03", brojFakture: "3", iznosZaPlacanje: 8000, poslovnaGodina: 2021 },
-];
+import axios from "axios";
 
-const fetchInvoices = () => {
-  return invoices;
-};
+const baseURL = "http://localhost:8080/api/izlazne-fakture";
+
+async function fetchInvoices(brojFakture, pageNum) {
+  console.log("br fakture", brojFakture);
+  console.log("br stranice", pageNum);
+
+  const response = await axios.get(baseURL, {
+    params: {
+      ...(brojFakture !== 0 ? { brojFakture: brojFakture } : {}),
+      ...(pageNum ? { pageNum: pageNum } : {}),
+    },
+  });
+  return response.data;
+}
 
 export const InvoiceService = {
   fetchInvoices,

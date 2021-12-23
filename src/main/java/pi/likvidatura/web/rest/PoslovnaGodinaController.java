@@ -17,6 +17,7 @@ import pi.likvidatura.service.dto.PoslovnaGodinaDTO;
 /**
  * REST controller for managing {@link pi.likvidatura.domain.PoslovnaGodina}.
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api/poslovne-godine")
 public class PoslovnaGodinaController {

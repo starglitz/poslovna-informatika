@@ -1,8 +1,6 @@
 import { useEffect } from "react";
-import InvoiceRow from "../components/InvoiceRow";
-import InvoiceTable from "../components/InvoiceTable";
-import PaymentSlip from "../components/PaymentSlip";
-import SelectedInvoice from "../components/SelectedInvoice";
+import InvoiceTable from "../components/invoice/InvoiceTable";
+import StavkeTable from "../components/stavke/StavkeTable";
 
 const MainPage = () => {
   useEffect(() => {
@@ -12,8 +10,7 @@ const MainPage = () => {
   return (
     <div>
       <InvoiceTable></InvoiceTable>
-      <SelectedInvoice></SelectedInvoice>
-      <PaymentSlip></PaymentSlip>
+      <StavkeTable></StavkeTable>
     </div>
   );
 };

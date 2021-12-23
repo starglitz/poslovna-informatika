@@ -2,6 +2,8 @@ package pi.likvidatura.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 import pi.likvidatura.service.dto.IzlaznaFakturaDTO;
 
 /**
@@ -21,7 +23,7 @@ public interface IzlaznaFakturaService {
      *
      * @return the list of entities.
      */
-    List<IzlaznaFakturaDTO> findAll();
+    Page<IzlaznaFakturaDTO> findAll(String brojFakture, int pageNum);
 
     /**
      * Get the "id" izlaznaFaktura.

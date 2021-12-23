@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pi.likvidatura.domain.IzlaznaFaktura;
@@ -42,13 +44,13 @@ public class IzlaznaFakturaServiceImpl implements IzlaznaFakturaService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<IzlaznaFakturaDTO> findAll() {
+    public Page<IzlaznaFakturaDTO> findAll(String brojFakture, int pageNum) {
         log.debug("Request to get all");
-        return izlaznaFakturaRepository
-            .findAll()
-            .stream()
-            .map(izlaznaFakturaMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        Page<IzlaznaFakturaDTO> fakture = izlaznaFakturaRepository
+                .findByBrojFakture(brojFakture, PageRequest.of(pageNum, 10))
+                .map(IzlaznaFakturaDTO::fromEntity);;
+
+        return fakture;
     }
 
     @Override

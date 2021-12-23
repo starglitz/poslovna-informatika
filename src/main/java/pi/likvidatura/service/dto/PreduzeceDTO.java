@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.Preduzece;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -48,6 +50,13 @@ public class PreduzeceDTO implements Serializable {
         this.maticniBroj = maticniBroj;
     }
 
+    public PreduzeceDTO(Long id, String naziv, String pib, String maticniBroj) {
+        this.id = id;
+        this.naziv = naziv;
+        this.pib = pib;
+        this.maticniBroj = maticniBroj;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,5 +87,10 @@ public class PreduzeceDTO implements Serializable {
             ", pib='" + getPib() + "'" +
             ", maticniBroj='" + getMaticniBroj() + "'" +
             "}";
+    }
+
+    public static PreduzeceDTO fromEntity(Preduzece preduzece) {
+        return new PreduzeceDTO(preduzece.getId(), preduzece.getNaziv(),
+                preduzece.getPib(), preduzece.getMaticniBroj());
     }
 }

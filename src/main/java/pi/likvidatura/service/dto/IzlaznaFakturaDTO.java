@@ -1,5 +1,8 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.IzlaznaFaktura;
+import pi.likvidatura.service.mapper.PoslovnaGodinaMapper;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -64,6 +67,13 @@ public class IzlaznaFakturaDTO implements Serializable {
         return Objects.equals(this.id, izlaznaFakturaDTO.id);
     }
 
+    public IzlaznaFakturaDTO(Long id, String brojFakture, Double iznosZaPlacanje, PoslovnaGodinaDTO poslovnaGodina) {
+        this.id = id;
+        this.brojFakture = brojFakture;
+        this.iznosZaPlacanje = iznosZaPlacanje;
+        this.poslovnaGodina = poslovnaGodina;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
@@ -78,5 +88,11 @@ public class IzlaznaFakturaDTO implements Serializable {
             ", iznosZaPlacanje=" + getIznosZaPlacanje() +
             ", poslovnaGodina=" + getPoslovnaGodina() +
             "}";
+    }
+
+    public static IzlaznaFakturaDTO fromEntity(IzlaznaFaktura faktura) {
+        return new IzlaznaFakturaDTO(faktura.getId(), faktura.getBrojFakture(),
+                faktura.getIznosZaPlacanje(),
+                PoslovnaGodinaDTO.fromEntity(faktura.getPoslovnaGodina()));
     }
 }
