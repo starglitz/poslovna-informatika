@@ -10,7 +10,7 @@ const InvoiceTable = () => {
 
   const [page, setPage] = useState(0);
   const [query, setQuery] = useState("");
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
 
   useEffect(() => {
     fetchInvoices(query, page);
@@ -20,7 +20,8 @@ const InvoiceTable = () => {
     const response = await InvoiceService.fetchInvoices(query, page);
     console.log(response);
     setInvoices(response.content);
-    setTotalPages(response.totalPages);
+    setTotalElements(response.totalElements);
+    console.log(response.totalPages);
   }
 
   const debouncedFetchInvoices = debounce((query) => {
@@ -71,7 +72,7 @@ const InvoiceTable = () => {
       <div class="margin inline">
         <Pagination
           defaultCurrent={page}
-          total={50}
+          total={totalElements}
           onChange={onPageChange}
         ></Pagination>
       </div>

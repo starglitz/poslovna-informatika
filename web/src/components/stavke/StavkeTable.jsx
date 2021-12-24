@@ -10,7 +10,7 @@ const StavkeTable = () => {
 
   const [page, setPage] = useState(0);
   const [query, setQuery] = useState("");
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalElements, setTotalElements] = useState(0);
 
   useEffect(() => {
     fetchStavke(query, page);
@@ -19,8 +19,7 @@ const StavkeTable = () => {
   async function fetchStavke(query, page) {
     const response = await StavkeService.fetchStavke(query, page);
     setStavke(response.content);
-    console.log("fetch stavke pozvan");
-    setTotalPages(response.totalPages);
+    setTotalElements(response.totalElements);
   }
 
   const debouncedFetchStavke = debounce((query) => {
@@ -73,11 +72,10 @@ const StavkeTable = () => {
           ))}
         </tbody>
       </Table>
-      <span className="align-right margin-right">page 1 of 1</span>
       <div class="margin inline">
         <Pagination
           defaultCurrent={page}
-          total={50}
+          total={totalElements}
           onChange={onPageChange}
         ></Pagination>
       </div>
