@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.BankarskiRacun;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,6 +17,13 @@ public class BankarskiRacunDTO implements Serializable {
     private PreduzeceDTO preduzece;
 
     private BankaDTO banka;
+
+    public BankarskiRacunDTO(Long id, String brojRacuna, PreduzeceDTO preduzece, BankaDTO banka) {
+        this.id = id;
+        this.brojRacuna = brojRacuna;
+        this.preduzece = preduzece;
+        this.banka = banka;
+    }
 
     public Long getId() {
         return id;
@@ -78,5 +87,11 @@ public class BankarskiRacunDTO implements Serializable {
             ", preduzece=" + getPreduzece() +
             ", banka=" + getBanka() +
             "}";
+    }
+
+    public static BankarskiRacunDTO fromEntity(BankarskiRacun racun) {
+        return new BankarskiRacunDTO(racun.getId(), racun.getBrojRacuna(),
+                PreduzeceDTO.fromEntity(racun.getPreduzece()),
+                BankaDTO.fromEntity(racun.getBanka()));
     }
 }

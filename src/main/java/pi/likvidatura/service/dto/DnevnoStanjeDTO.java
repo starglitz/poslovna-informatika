@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.DnevnoStanje;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -26,6 +28,21 @@ public class DnevnoStanjeDTO implements Serializable {
     private Double rezervisano;
 
     private BankarskiRacunDTO bankarskiRacun;
+
+    public DnevnoStanjeDTO(Long id, Integer brojIzvoda,
+                           LocalDate datumIzvoda, Double prethodnoStanje,
+                           Double prometUKorist, Double prometNaTeret, Double novoStanje,
+                           Double rezervisano, BankarskiRacunDTO bankarskiRacun) {
+        this.id = id;
+        this.brojIzvoda = brojIzvoda;
+        this.datumIzvoda = datumIzvoda;
+        this.prethodnoStanje = prethodnoStanje;
+        this.prometUKorist = prometUKorist;
+        this.prometNaTeret = prometNaTeret;
+        this.novoStanje = novoStanje;
+        this.rezervisano = rezervisano;
+        this.bankarskiRacun = bankarskiRacun;
+    }
 
     public Long getId() {
         return id;
@@ -134,5 +151,12 @@ public class DnevnoStanjeDTO implements Serializable {
             ", rezervisano=" + getRezervisano() +
             ", bankarskiRacun=" + getBankarskiRacun() +
             "}";
+    }
+
+    public static DnevnoStanjeDTO fromEntity(DnevnoStanje stanje) {
+        return new DnevnoStanjeDTO(stanje.getId(), stanje.getBrojIzvoda(),
+                stanje.getDatumIzvoda(), stanje.getPrethodnoStanje(), stanje.getPrometUKorist(),
+                stanje.getPrometNaTeret(), stanje.getNovoStanje(), stanje.getRezervisano(),
+                BankarskiRacunDTO.fromEntity(stanje.getBankarskiRacun()));
     }
 }

@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.StavkaIzvoda;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -29,6 +31,23 @@ public class StavkaIzvodaDTO implements Serializable {
     private String pozivNaBroj;
 
     private DnevnoStanjeDTO dnevnoStanje;
+
+    public StavkaIzvodaDTO(Long id, Integer brojStavke,
+                           Double iznos, String duznik, String svrhaPlacanja,
+                           String primalac, String racunDuznika, String racunPrimaoca,
+                           Integer model, String pozivNaBroj, DnevnoStanjeDTO dnevnoStanje) {
+        this.id = id;
+        this.brojStavke = brojStavke;
+        this.iznos = iznos;
+        this.duznik = duznik;
+        this.svrhaPlacanja = svrhaPlacanja;
+        this.primalac = primalac;
+        this.racunDuznika = racunDuznika;
+        this.racunPrimaoca = racunPrimaoca;
+        this.model = model;
+        this.pozivNaBroj = pozivNaBroj;
+        this.dnevnoStanje = dnevnoStanje;
+    }
 
     public Long getId() {
         return id;
@@ -155,5 +174,13 @@ public class StavkaIzvodaDTO implements Serializable {
             ", pozivNaBroj='" + getPozivNaBroj() + "'" +
             ", dnevnoStanje=" + getDnevnoStanje() +
             "}";
+    }
+
+    public static StavkaIzvodaDTO fromEntity(StavkaIzvoda stavka) {
+        return new StavkaIzvodaDTO(stavka.getId(), stavka.getBrojStavke(), stavka.getIznos(),
+                stavka.getDuznik(), stavka.getSvrhaPlacanja(), stavka.getPrimalac(),
+                stavka.getRacunDuznika(), stavka.getRacunPrimaoca(),
+                stavka.getModel(), stavka.getPozivNaBroj(),
+                DnevnoStanjeDTO.fromEntity(stavka.getDnevnoStanje()));
     }
 }

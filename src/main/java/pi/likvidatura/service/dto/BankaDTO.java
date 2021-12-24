@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.Banka;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,6 +15,12 @@ public class BankaDTO implements Serializable {
     private String sifra;
 
     private String naziv;
+
+    public BankaDTO(Long id, String sifra, String naziv) {
+        this.id = id;
+        this.sifra = sifra;
+        this.naziv = naziv;
+    }
 
     public Long getId() {
         return id;
@@ -67,5 +75,9 @@ public class BankaDTO implements Serializable {
             ", sifra='" + getSifra() + "'" +
             ", naziv='" + getNaziv() + "'" +
             "}";
+    }
+
+    public static BankaDTO fromEntity(Banka banka) {
+        return new BankaDTO(banka.getId(), banka.getSifra(), banka.getNaziv());
     }
 }
