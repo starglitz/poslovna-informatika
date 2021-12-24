@@ -6,11 +6,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pi.likvidatura.domain.StavkaIzvoda;
 import pi.likvidatura.repository.StavkaIzvodaRepository;
 import pi.likvidatura.service.StavkaIzvodaService;
+import pi.likvidatura.service.dto.IzlaznaFakturaDTO;
 import pi.likvidatura.service.dto.StavkaIzvodaDTO;
 import pi.likvidatura.service.mapper.StavkaIzvodaMapper;
 
@@ -42,9 +45,13 @@ public class StavkaIzvodaServiceImpl implements StavkaIzvodaService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<StavkaIzvodaDTO> findAll() {
+    public Page<StavkaIzvodaDTO> findAll(String primalac, int pageNum) {
         log.debug("Request to get all");
-        return stavkaIzvodaRepository.findAll().stream().map(stavkaIzvodaMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        Page<StavkaIzvodaDTO> stavke = stavkaIzvodaRepository
+                .findByPrimalac(primalac, PageRequest.of(pageNum, 10))
+                .map(StavkaIzvodaDTO::fromEntity);;
+
+        return stavke;
     }
 
     @Override

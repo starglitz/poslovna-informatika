@@ -16,5 +16,5 @@ public interface IzlaznaFakturaRepository extends JpaRepository<IzlaznaFaktura, 
 
     @Query("SELECT f FROM IzlaznaFaktura f WHERE "
             + "f.brojFakture like %:brojFakture%")
-    public Page<IzlaznaFaktura> findByBrojFakture(String brojFakture, Pageable pageable);
+    Page<IzlaznaFaktura> findByBrojFakture(String brojFakture, Pageable pageable);
 }
