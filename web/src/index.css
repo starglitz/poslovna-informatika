@@ -108,10 +108,20 @@ code {
 
 .invoices-div {
   display: inline-block;
-  width: 40%;
+  width: 50%;
   padding: 40px;
 }
 
 .stavke-div {
   display: inline-block;
+}
+
+.table-wrapper {
+  display: flex;
+}
+
+.table-wrapper .invoices-div {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 0 auto;
 }

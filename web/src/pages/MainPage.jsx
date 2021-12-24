@@ -9,8 +9,10 @@ const MainPage = () => {
 
   return (
     <div>
-      <InvoiceTable></InvoiceTable>
-      <StavkeTable></StavkeTable>
+      <div class="table-wrapper">
+        <InvoiceTable></InvoiceTable>
+        <StavkeTable></StavkeTable>
+      </div>
     </div>
   );
 };

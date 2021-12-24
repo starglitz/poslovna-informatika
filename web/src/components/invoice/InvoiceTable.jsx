@@ -68,11 +68,13 @@ const InvoiceTable = () => {
           ))}
         </tbody>
       </Table>
-      <Pagination
-        defaultCurrent={page}
-        total={50}
-        onChange={onPageChange}
-      ></Pagination>
+      <div class="margin inline">
+        <Pagination
+          defaultCurrent={page}
+          total={50}
+          onChange={onPageChange}
+        ></Pagination>
+      </div>
     </div>
   );
 };

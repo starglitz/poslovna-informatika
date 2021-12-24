@@ -45,12 +45,11 @@ public class StavkaIzvodaServiceImpl implements StavkaIzvodaService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<StavkaIzvodaDTO> findAll(String primalac, int pageNum) {
+    public Page<StavkaIzvodaDTO> findAll(String svrhaPlacanja, int pageNum) {
         log.debug("Request to get all");
         Page<StavkaIzvodaDTO> stavke = stavkaIzvodaRepository
-                .findByPrimalac(primalac, PageRequest.of(pageNum, 10))
+                .findBySvrhaPlacanja(svrhaPlacanja, PageRequest.of(pageNum, 10))
                 .map(StavkaIzvodaDTO::fromEntity);;
-
         return stavke;
     }
 

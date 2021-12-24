@@ -74,10 +74,10 @@ public class StavkaIzvodaController {
     
     @GetMapping()
     public Page<StavkaIzvodaDTO> getAllStavkeIzvoda(
-            @RequestParam(defaultValue="") String primalac,
+            @RequestParam(defaultValue="") String svrhaPlacanja,
             @RequestParam(defaultValue="0") int pageNum) {
         log.debug("REST request to get all");
-        return stavkaIzvodaService.findAll(primalac, pageNum);
+        return stavkaIzvodaService.findAll(svrhaPlacanja, pageNum);
     }
 
     @GetMapping("/{id}")
