@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import { StavkeService } from "../../service/StavkeService";
 import StavkeRow from "./StavkeRow";
 
-const StavkeTable = () => {
+const StavkeTable = (props) => {
   const [stavke, setStavke] = useState([]);
 
   const [page, setPage] = useState(0);
@@ -24,7 +24,6 @@ const StavkeTable = () => {
 
   const debouncedFetchStavke = debounce((query) => {
     setQuery(query);
-    console.log("kveri je: ", query);
   }, 2000);
 
   const onSearchInputChange = (e) => {
@@ -36,8 +35,12 @@ const StavkeTable = () => {
     fetchStavke(query, e - 1);
   };
 
+  const onSelectedStavkaChangeHandler = (stavka) => {
+    props.onSelectedStavkaChange(stavka);
+  };
+
   return (
-    <div class="invoices-div stavke-div">
+    <div className="invoices-div stavke-div">
       <div className="margin inline">
         <span className="align-left margin font-size-2">Stavke izvoda</span>
         <div className="align-left margin inline margin-sm-top"></div>
@@ -68,7 +71,14 @@ const StavkeTable = () => {
         </thead>
         <tbody>
           {stavke.map((stavka) => (
-            <StavkeRow stavka={stavka} key={stavka.id} />
+            <tr onClick={() => onSelectedStavkaChangeHandler(stavka)}>
+              <td>{stavka.id}</td>
+              <td>{stavka.brojStavke}</td>
+              <td>{stavka.iznos}</td>
+              <td>{stavka.duznik}</td>
+              <td>{stavka.svrhaPlacanja}</td>
+              <td>{stavka.primalac}</td>
+            </tr>
           ))}
         </tbody>
       </Table>

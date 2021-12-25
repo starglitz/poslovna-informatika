@@ -109,7 +109,7 @@ code {
 .invoices-div {
   display: inline-block;
   width: 50%;
-  padding: 40px;
+  padding: 0 40px;
 }
 
 .stavke-div {
@@ -124,4 +124,19 @@ code {
   flex-grow: 0;
   flex-shrink: 0;
   margin: 0 auto;
+}
+
+.display-block {
+  display: block;
+}
+
+.zatvaranje-table {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.selected-div {
+  display: inline-block;
+  width: 50%;
+  padding: 0 40px;
 }

@@ -1,5 +1,4 @@
 const StavkeRow = (props) => {
-  console.log(props);
   return (
     <tr>
       <td>{props.stavka.id}</td>

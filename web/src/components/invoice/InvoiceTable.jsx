@@ -5,7 +5,7 @@ import { Dropdown, Table } from "react-bootstrap";
 import { InvoiceService } from "../../service/InvoiceService";
 import InvoiceRow from "./InvoiceRow";
 
-const InvoiceTable = () => {
+const InvoiceTable = (props) => {
   const [invoices, setInvoices] = useState([]);
 
   const [page, setPage] = useState(0);
@@ -18,10 +18,8 @@ const InvoiceTable = () => {
 
   async function fetchInvoices(query, page) {
     const response = await InvoiceService.fetchInvoices(query, page);
-    console.log(response);
     setInvoices(response.content);
     setTotalElements(response.totalElements);
-    console.log(response.totalPages);
   }
 
   const debouncedFetchInvoices = debounce((query) => {
@@ -35,6 +33,10 @@ const InvoiceTable = () => {
   const onPageChange = (e) => {
     setPage(e - 1);
     fetchInvoices(query, e - 1);
+  };
+
+  const onSelectedInvoiceChangeHandler = (invoice) => {
+    props.onSelectedInvoiceChange(invoice);
   };
 
   return (
@@ -65,11 +67,15 @@ const InvoiceTable = () => {
         </thead>
         <tbody>
           {invoices.map((invoice) => (
-            <InvoiceRow invoice={invoice} key={invoice.id} />
+            <tr onClick={() => onSelectedInvoiceChangeHandler(invoice)}>
+              <td>{invoice.id}</td>
+              <td>{invoice.brojFakture}</td>
+              <td>{invoice.iznosZaPlacanje}</td>
+            </tr>
           ))}
         </tbody>
       </Table>
-      <div class="margin inline">
+      <div className="margin inline">
         <Pagination
           defaultCurrent={page}
           total={totalElements}
