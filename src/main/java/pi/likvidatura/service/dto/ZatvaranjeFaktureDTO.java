@@ -1,6 +1,9 @@
 package pi.likvidatura.service.dto;
 
 
+import pi.likvidatura.domain.IzlaznaFaktura;
+import pi.likvidatura.domain.ZatvaranjeFakture;
+
 import javax.persistence.ManyToOne;
 import java.util.List;
 
@@ -57,4 +60,11 @@ public class ZatvaranjeFaktureDTO {
     public void setFakture(List<IzlaznaFakturaDTO> fakture) {
         this.fakture = fakture;
     }
+
+    public static ZatvaranjeFaktureDTO fromEntity(ZatvaranjeFakture zatvaranje) {
+        return new ZatvaranjeFaktureDTO(zatvaranje.getId(), zatvaranje.getIznos(),
+                StavkaIzvodaDTO.fromEntityList(zatvaranje.getStavkeIzvoda()),
+                IzlaznaFakturaDTO.fromEntityList(zatvaranje.getFakture()));
+    }
+
 }

@@ -4,6 +4,8 @@ import pi.likvidatura.domain.IzlaznaFaktura;
 import pi.likvidatura.service.mapper.PoslovnaGodinaMapper;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -94,5 +96,15 @@ public class IzlaznaFakturaDTO implements Serializable {
         return new IzlaznaFakturaDTO(faktura.getId(), faktura.getBrojFakture(),
                 faktura.getIznosZaPlacanje(),
                 PoslovnaGodinaDTO.fromEntity(faktura.getPoslovnaGodina()));
+    }
+
+    public static List<IzlaznaFakturaDTO> fromEntityList(
+            List<IzlaznaFaktura> fakture) {
+        List<IzlaznaFakturaDTO> dtos = new ArrayList<>();
+
+        for(IzlaznaFaktura faktura : fakture) {
+            dtos.add(fromEntity(faktura));
+        }
+        return dtos;
     }
 }

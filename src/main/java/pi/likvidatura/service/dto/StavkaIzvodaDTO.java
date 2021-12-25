@@ -3,6 +3,9 @@ package pi.likvidatura.service.dto;
 import pi.likvidatura.domain.StavkaIzvoda;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -182,5 +185,15 @@ public class StavkaIzvodaDTO implements Serializable {
                 stavka.getRacunDuznika(), stavka.getRacunPrimaoca(),
                 stavka.getModel(), stavka.getPozivNaBroj(),
                 DnevnoStanjeDTO.fromEntity(stavka.getDnevnoStanje()));
+    }
+
+    public static List<StavkaIzvodaDTO> fromEntityList(List<StavkaIzvoda> stavke) {
+        List<StavkaIzvodaDTO> dtos = new ArrayList<>();
+
+        for(StavkaIzvoda stavka : stavke) {
+            dtos.add(fromEntity(stavka));
+        }
+
+        return dtos;
     }
 }
