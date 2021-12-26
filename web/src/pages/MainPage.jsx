@@ -4,6 +4,7 @@ import InvoiceTable from "../components/invoice/InvoiceTable";
 import SelectedInvoice from "../components/invoice/SelectedInvoice";
 import SelectedStavka from "../components/stavke/SelectedStavka";
 import StavkeTable from "../components/stavke/StavkeTable";
+import UploadFile from "../components/upload/UploadFile";
 import ZatvaranjeFaktureTable from "../components/zatvaranje-fakture/ZatvaranjeFaktureTable";
 
 const MainPage = () => {
@@ -36,6 +37,7 @@ const MainPage = () => {
         stavka={selectedStavka}
       ></ZatvaranjeFaktureTable>
       <DownloadPdf></DownloadPdf>
+      <UploadFile></UploadFile>
     </div>
   );
 };
