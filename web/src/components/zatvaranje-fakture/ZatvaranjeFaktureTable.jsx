@@ -46,13 +46,11 @@ const ZatvaranjeFaktureTable = (props) => {
     } else if (props.invoice.zatvorena) {
       toggleShowToast(true, "Izabrana faktura je vec zatvorena");
     } else {
-      const repsonse = await ZatvaranjeService.zatvoriFakturu(
+      const response = await ZatvaranjeService.zatvoriFakturu(
         zatvaranjeFakture
       ).catch(function (error) {
         if (error.response) {
-          if (error.status === 400) {
-            toggleShowToast(true, "Nedovoljno sredstava za uplatu");
-          }
+          toggleShowToast(true, "Nedovoljno sredstava za uplatu");
         }
       });
 
@@ -89,6 +87,8 @@ const ZatvaranjeFaktureTable = (props) => {
             <tr>
               <th>ID</th>
               <th>Iznos</th>
+              <th>Faktura ID</th>
+              <th>Stavka ID</th>
             </tr>
           </thead>
           <tbody>

@@ -46,6 +46,7 @@ const DownloadPdf = () => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
+      <br></br>
       <Button onClick={generatePdf}>
         Download Knjiga Izlaznih Faktura PDF
       </Button>
