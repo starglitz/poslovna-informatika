@@ -13,18 +13,19 @@ public class ZatvaranjeFakture {
 
     private int iznos;
 
-    @OneToMany
-    private List<StavkaIzvoda> stavkeIzvoda;
+    @ManyToOne
+    private StavkaIzvoda stavkaIzvoda;
 
-    @OneToMany
-    private List<IzlaznaFaktura> fakture;
+    @ManyToOne
+    private IzlaznaFaktura faktura;
 
     public ZatvaranjeFakture() {}
 
-    public ZatvaranjeFakture(int iznos, List<StavkaIzvoda> stavkeIzvoda, List<IzlaznaFaktura> fakture) {
+    public ZatvaranjeFakture(Long id, int iznos, StavkaIzvoda stavkaIzvoda, IzlaznaFaktura faktura) {
+        this.id = id;
         this.iznos = iznos;
-        this.stavkeIzvoda = stavkeIzvoda;
-        this.fakture = fakture;
+        this.stavkaIzvoda = stavkaIzvoda;
+        this.faktura = faktura;
     }
 
     public Long getId() {
@@ -43,19 +44,19 @@ public class ZatvaranjeFakture {
         this.iznos = iznos;
     }
 
-    public List<StavkaIzvoda> getStavkeIzvoda() {
-        return stavkeIzvoda;
+    public StavkaIzvoda getStavkaIzvoda() {
+        return stavkaIzvoda;
     }
 
-    public void setStavkeIzvoda(List<StavkaIzvoda> stavkeIzvoda) {
-        this.stavkeIzvoda = stavkeIzvoda;
+    public void setStavkaIzvoda(StavkaIzvoda stavkaIzvoda) {
+        this.stavkaIzvoda = stavkaIzvoda;
     }
 
-    public List<IzlaznaFaktura> getFakture() {
-        return fakture;
+    public IzlaznaFaktura getFaktura() {
+        return faktura;
     }
 
-    public void setFakture(List<IzlaznaFaktura> fakture) {
-        this.fakture = fakture;
+    public void setFaktura(IzlaznaFaktura faktura) {
+        this.faktura = faktura;
     }
 }

@@ -28,6 +28,8 @@ public class IzlaznaFaktura implements Serializable {
     @Column(name = "iznos_za_placanje")
     private Double iznosZaPlacanje;
 
+    private Double isplaceniIznos;
+
     @ManyToOne
     private PoslovnaGodina poslovnaGodina;
 
@@ -48,12 +50,13 @@ public class IzlaznaFaktura implements Serializable {
     public IzlaznaFaktura(Long id, String brojFakture,
                           Double iznosZaPlacanje,
                           PoslovnaGodina poslovnaGodina,
-                          PoslovniPartner poslovniPartner) {
+                          PoslovniPartner poslovniPartner,Double isplaceniIznos) {
         this.id = id;
         this.brojFakture = brojFakture;
         this.iznosZaPlacanje = iznosZaPlacanje;
         this.poslovnaGodina = poslovnaGodina;
         this.poslovniPartner = poslovniPartner;
+        this.isplaceniIznos = isplaceniIznos;
     }
 
     public void setId(Long id) {
@@ -105,6 +108,14 @@ public class IzlaznaFaktura implements Serializable {
 
     public void setPoslovniPartner(PoslovniPartner poslovniPartner) {
         this.poslovniPartner = poslovniPartner;
+    }
+
+    public Double getIsplaceniIznos() {
+        return isplaceniIznos;
+    }
+
+    public void setIsplaceniIznos(Double isplaceniIznos) {
+        this.isplaceniIznos = isplaceniIznos;
     }
 
     @Override

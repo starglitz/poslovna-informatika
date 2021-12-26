@@ -30,6 +30,9 @@ public class StavkaIzvoda implements Serializable {
     @Column(name = "iznos")
     private Double iznos;
 
+    @Column(name = "iskorisceni_iznos")
+    private Double iskorisceniIznos;
+
     @Column(name = "duznik")
     private String duznik;
 
@@ -195,6 +198,14 @@ public class StavkaIzvoda implements Serializable {
     public StavkaIzvoda dnevnoStanje(DnevnoStanje dnevnoStanje) {
         this.setDnevnoStanje(dnevnoStanje);
         return this;
+    }
+
+    public Double getIskorisceniIznos() {
+        return iskorisceniIznos;
+    }
+
+    public void setIskorisceniIznos(Double iskorisceniIznos) {
+        this.iskorisceniIznos = iskorisceniIznos;
     }
 
     @Override

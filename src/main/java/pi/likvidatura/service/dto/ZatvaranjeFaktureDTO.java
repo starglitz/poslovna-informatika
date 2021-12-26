@@ -13,20 +13,20 @@ public class ZatvaranjeFaktureDTO {
 
     private int iznos;
 
-    @ManyToOne
-    private List<StavkaIzvodaDTO> stavkeIzvoda;
+    private StavkaIzvodaDTO stavkaIzvoda;
 
-    @ManyToOne
-    private List<IzlaznaFakturaDTO> fakture;
+    private IzlaznaFakturaDTO faktura;
 
     public ZatvaranjeFaktureDTO() {};
 
-    public ZatvaranjeFaktureDTO(Long id, int iznos, List<StavkaIzvodaDTO> stavkeIzvoda,
-                                List<IzlaznaFakturaDTO> fakture) {
+    public ZatvaranjeFaktureDTO(Long id,
+                                int iznos,
+                                StavkaIzvodaDTO stavkaIzvoda,
+                                IzlaznaFakturaDTO faktura) {
         this.id = id;
         this.iznos = iznos;
-        this.stavkeIzvoda = stavkeIzvoda;
-        this.fakture = fakture;
+        this.stavkaIzvoda = stavkaIzvoda;
+        this.faktura = faktura;
     }
 
     public Long getId() {
@@ -45,26 +45,26 @@ public class ZatvaranjeFaktureDTO {
         this.iznos = iznos;
     }
 
-    public List<StavkaIzvodaDTO> getStavkeIzvoda() {
-        return stavkeIzvoda;
+    public StavkaIzvodaDTO getStavkaIzvoda() {
+        return stavkaIzvoda;
     }
 
-    public void setStavkeIzvoda(List<StavkaIzvodaDTO> stavkeIzvoda) {
-        this.stavkeIzvoda = stavkeIzvoda;
+    public void setStavkaIzvoda(StavkaIzvodaDTO stavkaIzvoda) {
+        this.stavkaIzvoda = stavkaIzvoda;
     }
 
-    public List<IzlaznaFakturaDTO> getFakture() {
-        return fakture;
+    public IzlaznaFakturaDTO getFaktura() {
+        return faktura;
     }
 
-    public void setFakture(List<IzlaznaFakturaDTO> fakture) {
-        this.fakture = fakture;
+    public void setFaktura(IzlaznaFakturaDTO faktura) {
+        this.faktura = faktura;
     }
 
     public static ZatvaranjeFaktureDTO fromEntity(ZatvaranjeFakture zatvaranje) {
         return new ZatvaranjeFaktureDTO(zatvaranje.getId(), zatvaranje.getIznos(),
-                StavkaIzvodaDTO.fromEntityList(zatvaranje.getStavkeIzvoda()),
-                IzlaznaFakturaDTO.fromEntityList(zatvaranje.getFakture()));
+                StavkaIzvodaDTO.fromEntity(zatvaranje.getStavkaIzvoda()),
+                IzlaznaFakturaDTO.fromEntity(zatvaranje.getFaktura()));
     }
 
 }
