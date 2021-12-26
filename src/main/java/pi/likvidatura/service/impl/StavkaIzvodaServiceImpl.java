@@ -49,7 +49,7 @@ public class StavkaIzvodaServiceImpl implements StavkaIzvodaService {
         log.debug("Request to get all");
         Page<StavkaIzvodaDTO> stavke = stavkaIzvodaRepository
                 .findBySvrhaPlacanja(svrhaPlacanja, PageRequest.of(pageNum, 10))
-                .map(StavkaIzvodaDTO::fromEntity);;
+                .map(StavkaIzvodaDTO::fromEntity);
         return stavke;
     }
 

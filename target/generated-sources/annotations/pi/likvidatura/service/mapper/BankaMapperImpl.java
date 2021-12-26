@@ -9,7 +9,7 @@ import pi.likvidatura.service.dto.BankaDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:32+0100",
+    date = "2021-12-26T19:06:33+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -36,11 +36,15 @@ public class BankaMapperImpl implements BankaMapper {
             return null;
         }
 
-        BankaDTO bankaDTO = new BankaDTO();
+        Long id = null;
+        String sifra = null;
+        String naziv = null;
 
-        bankaDTO.setId( entity.getId() );
-        bankaDTO.setSifra( entity.getSifra() );
-        bankaDTO.setNaziv( entity.getNaziv() );
+        id = entity.getId();
+        sifra = entity.getSifra();
+        naziv = entity.getNaziv();
+
+        BankaDTO bankaDTO = new BankaDTO( id, sifra, naziv );
 
         return bankaDTO;
     }
@@ -79,9 +83,14 @@ public class BankaMapperImpl implements BankaMapper {
             return null;
         }
 
-        BankaDTO bankaDTO = new BankaDTO();
+        Long id = null;
 
-        bankaDTO.setId( banka.getId() );
+        id = banka.getId();
+
+        String sifra = null;
+        String naziv = null;
+
+        BankaDTO bankaDTO = new BankaDTO( id, sifra, naziv );
 
         return bankaDTO;
     }

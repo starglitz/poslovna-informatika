@@ -1,11 +1,14 @@
 package pi.likvidatura.web.rest;
 
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -99,5 +102,14 @@ public class IzlaznaFakturaController {
         return ResponseEntity
             .noContent()
             .build();
+    }
+
+    @GetMapping("/pdf")
+    public ResponseEntity<Document> getPdf(@RequestParam Long poslovniPartnerId)
+            throws FileNotFoundException, DocumentException {
+        Document pdf = izlaznaFakturaService.generatePdf(poslovniPartnerId);
+        return ResponseEntity
+                .ok()
+                .body(pdf);
     }
 }

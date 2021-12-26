@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import pi.likvidatura.domain.IzlaznaFaktura;
 
+import java.util.List;
+
 /**
  * Spring Data SQL repository for the IzlaznaFaktura entity.
  */
@@ -17,4 +19,8 @@ public interface IzlaznaFakturaRepository extends JpaRepository<IzlaznaFaktura, 
     @Query("SELECT f FROM IzlaznaFaktura f WHERE "
             + "f.brojFakture like %:brojFakture%")
     Page<IzlaznaFaktura> findByBrojFakture(String brojFakture, Pageable pageable);
+
+    @Query("SELECT f FROM IzlaznaFaktura f WHERE "
+            + "f.poslovniPartner.id = :poslovniPartnerId")
+    List<IzlaznaFaktura> findByPoslovniPartner(Long poslovniPartnerId);
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import pi.likvidatura.service.dto.DnevnoStanjeDTO;
 
+import javax.swing.text.Document;
+
 /**
  * Service Interface for managing {@link pi.likvidatura.domain.DnevnoStanje}.
  */

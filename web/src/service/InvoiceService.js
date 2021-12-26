@@ -12,6 +12,15 @@ async function fetchInvoices(brojFakture, pageNum) {
   return response.data;
 }
 
+async function getPdf(poslovniPartner) {
+  const response = await axios.get(baseURL + "/pdf", {
+    params: { poslovniPartnerId: poslovniPartner.id },
+  });
+
+  return response.data;
+}
+
 export const InvoiceService = {
   fetchInvoices,
+  getPdf,
 };

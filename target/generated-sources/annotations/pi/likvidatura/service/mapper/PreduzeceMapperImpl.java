@@ -9,7 +9,7 @@ import pi.likvidatura.service.dto.PreduzeceDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:33+0100",
+    date = "2021-12-26T19:06:33+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -37,12 +37,17 @@ public class PreduzeceMapperImpl implements PreduzeceMapper {
             return null;
         }
 
-        PreduzeceDTO preduzeceDTO = new PreduzeceDTO();
+        Long id = null;
+        String naziv = null;
+        String pib = null;
+        String maticniBroj = null;
 
-        preduzeceDTO.setId( entity.getId() );
-        preduzeceDTO.setNaziv( entity.getNaziv() );
-        preduzeceDTO.setPib( entity.getPib() );
-        preduzeceDTO.setMaticniBroj( entity.getMaticniBroj() );
+        id = entity.getId();
+        naziv = entity.getNaziv();
+        pib = entity.getPib();
+        maticniBroj = entity.getMaticniBroj();
+
+        PreduzeceDTO preduzeceDTO = new PreduzeceDTO( id, naziv, pib, maticniBroj );
 
         return preduzeceDTO;
     }
@@ -81,9 +86,15 @@ public class PreduzeceMapperImpl implements PreduzeceMapper {
             return null;
         }
 
-        PreduzeceDTO preduzeceDTO = new PreduzeceDTO();
+        Long id = null;
 
-        preduzeceDTO.setId( preduzece.getId() );
+        id = preduzece.getId();
+
+        String naziv = null;
+        String pib = null;
+        String maticniBroj = null;
+
+        PreduzeceDTO preduzeceDTO = new PreduzeceDTO( id, naziv, pib, maticniBroj );
 
         return preduzeceDTO;
     }

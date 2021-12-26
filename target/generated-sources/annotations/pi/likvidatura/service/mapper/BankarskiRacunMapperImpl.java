@@ -6,11 +6,13 @@ import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pi.likvidatura.domain.BankarskiRacun;
+import pi.likvidatura.service.dto.BankaDTO;
 import pi.likvidatura.service.dto.BankarskiRacunDTO;
+import pi.likvidatura.service.dto.PreduzeceDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:33+0100",
+    date = "2021-12-26T19:06:32+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -71,12 +73,17 @@ public class BankarskiRacunMapperImpl implements BankarskiRacunMapper {
             return null;
         }
 
-        BankarskiRacunDTO bankarskiRacunDTO = new BankarskiRacunDTO();
+        PreduzeceDTO preduzece = null;
+        BankaDTO banka = null;
+        Long id = null;
+        String brojRacuna = null;
 
-        bankarskiRacunDTO.setPreduzece( preduzeceMapper.toDtoId( s.getPreduzece() ) );
-        bankarskiRacunDTO.setBanka( bankaMapper.toDtoId( s.getBanka() ) );
-        bankarskiRacunDTO.setId( s.getId() );
-        bankarskiRacunDTO.setBrojRacuna( s.getBrojRacuna() );
+        preduzece = preduzeceMapper.toDtoId( s.getPreduzece() );
+        banka = bankaMapper.toDtoId( s.getBanka() );
+        id = s.getId();
+        brojRacuna = s.getBrojRacuna();
+
+        BankarskiRacunDTO bankarskiRacunDTO = new BankarskiRacunDTO( id, brojRacuna, preduzece, banka );
 
         return bankarskiRacunDTO;
     }
@@ -87,9 +94,15 @@ public class BankarskiRacunMapperImpl implements BankarskiRacunMapper {
             return null;
         }
 
-        BankarskiRacunDTO bankarskiRacunDTO = new BankarskiRacunDTO();
+        Long id = null;
 
-        bankarskiRacunDTO.setId( bankarskiRacun.getId() );
+        id = bankarskiRacun.getId();
+
+        String brojRacuna = null;
+        PreduzeceDTO preduzece = null;
+        BankaDTO banka = null;
+
+        BankarskiRacunDTO bankarskiRacunDTO = new BankarskiRacunDTO( id, brojRacuna, preduzece, banka );
 
         return bankarskiRacunDTO;
     }

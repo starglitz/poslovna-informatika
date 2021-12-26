@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DownloadPdf from "../components/invoice/DownloadPdf";
 import InvoiceTable from "../components/invoice/InvoiceTable";
 import SelectedInvoice from "../components/invoice/SelectedInvoice";
 import SelectedStavka from "../components/stavke/SelectedStavka";
@@ -34,6 +35,7 @@ const MainPage = () => {
         invoice={selectedInvoice}
         stavka={selectedStavka}
       ></ZatvaranjeFaktureTable>
+      <DownloadPdf></DownloadPdf>
     </div>
   );
 };

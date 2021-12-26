@@ -1,16 +1,18 @@
 package pi.likvidatura.service.mapper;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pi.likvidatura.domain.DnevnoStanje;
+import pi.likvidatura.service.dto.BankarskiRacunDTO;
 import pi.likvidatura.service.dto.DnevnoStanjeDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:32+0100",
+    date = "2021-12-26T19:06:33+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -74,17 +76,27 @@ public class DnevnoStanjeMapperImpl implements DnevnoStanjeMapper {
             return null;
         }
 
-        DnevnoStanjeDTO dnevnoStanjeDTO = new DnevnoStanjeDTO();
+        BankarskiRacunDTO bankarskiRacun = null;
+        Long id = null;
+        Integer brojIzvoda = null;
+        LocalDate datumIzvoda = null;
+        Double prethodnoStanje = null;
+        Double prometUKorist = null;
+        Double prometNaTeret = null;
+        Double novoStanje = null;
+        Double rezervisano = null;
 
-        dnevnoStanjeDTO.setBankarskiRacun( bankarskiRacunMapper.toDtoId( s.getBankarskiRacun() ) );
-        dnevnoStanjeDTO.setId( s.getId() );
-        dnevnoStanjeDTO.setBrojIzvoda( s.getBrojIzvoda() );
-        dnevnoStanjeDTO.setDatumIzvoda( s.getDatumIzvoda() );
-        dnevnoStanjeDTO.setPrethodnoStanje( s.getPrethodnoStanje() );
-        dnevnoStanjeDTO.setPrometUKorist( s.getPrometUKorist() );
-        dnevnoStanjeDTO.setPrometNaTeret( s.getPrometNaTeret() );
-        dnevnoStanjeDTO.setNovoStanje( s.getNovoStanje() );
-        dnevnoStanjeDTO.setRezervisano( s.getRezervisano() );
+        bankarskiRacun = bankarskiRacunMapper.toDtoId( s.getBankarskiRacun() );
+        id = s.getId();
+        brojIzvoda = s.getBrojIzvoda();
+        datumIzvoda = s.getDatumIzvoda();
+        prethodnoStanje = s.getPrethodnoStanje();
+        prometUKorist = s.getPrometUKorist();
+        prometNaTeret = s.getPrometNaTeret();
+        novoStanje = s.getNovoStanje();
+        rezervisano = s.getRezervisano();
+
+        DnevnoStanjeDTO dnevnoStanjeDTO = new DnevnoStanjeDTO( id, brojIzvoda, datumIzvoda, prethodnoStanje, prometUKorist, prometNaTeret, novoStanje, rezervisano, bankarskiRacun );
 
         return dnevnoStanjeDTO;
     }
@@ -95,9 +107,20 @@ public class DnevnoStanjeMapperImpl implements DnevnoStanjeMapper {
             return null;
         }
 
-        DnevnoStanjeDTO dnevnoStanjeDTO = new DnevnoStanjeDTO();
+        Long id = null;
 
-        dnevnoStanjeDTO.setId( dnevnoStanje.getId() );
+        id = dnevnoStanje.getId();
+
+        Integer brojIzvoda = null;
+        LocalDate datumIzvoda = null;
+        Double prethodnoStanje = null;
+        Double prometUKorist = null;
+        Double prometNaTeret = null;
+        Double novoStanje = null;
+        Double rezervisano = null;
+        BankarskiRacunDTO bankarskiRacun = null;
+
+        DnevnoStanjeDTO dnevnoStanjeDTO = new DnevnoStanjeDTO( id, brojIzvoda, datumIzvoda, prethodnoStanje, prometUKorist, prometNaTeret, novoStanje, rezervisano, bankarskiRacun );
 
         return dnevnoStanjeDTO;
     }

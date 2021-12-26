@@ -1,10 +1,14 @@
 package pi.likvidatura.service;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import org.springframework.data.domain.Page;
 import pi.likvidatura.service.dto.IzlaznaFakturaDTO;
+
 
 /**
  * Service Interface for managing {@link pi.likvidatura.domain.IzlaznaFaktura}.
@@ -39,4 +43,6 @@ public interface IzlaznaFakturaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Document generatePdf(Long poslovniPartnerId) throws DocumentException, FileNotFoundException;
 }

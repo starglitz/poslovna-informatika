@@ -11,7 +11,7 @@ import pi.likvidatura.service.dto.StavkaIzvodaDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-26T12:22:46+0100",
+    date = "2021-12-26T19:06:33+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component

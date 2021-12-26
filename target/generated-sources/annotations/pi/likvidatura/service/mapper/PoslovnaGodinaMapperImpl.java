@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pi.likvidatura.domain.PoslovnaGodina;
 import pi.likvidatura.service.dto.PoslovnaGodinaDTO;
+import pi.likvidatura.service.dto.PreduzeceDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:33+0100",
+    date = "2021-12-26T19:06:33+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -69,12 +70,17 @@ public class PoslovnaGodinaMapperImpl implements PoslovnaGodinaMapper {
             return null;
         }
 
-        PoslovnaGodinaDTO poslovnaGodinaDTO = new PoslovnaGodinaDTO();
+        PreduzeceDTO preduzece = null;
+        Long id = null;
+        Integer godina = null;
+        Boolean zakljucena = null;
 
-        poslovnaGodinaDTO.setPreduzece( preduzeceMapper.toDtoId( s.getPreduzece() ) );
-        poslovnaGodinaDTO.setId( s.getId() );
-        poslovnaGodinaDTO.setGodina( s.getGodina() );
-        poslovnaGodinaDTO.setZakljucena( s.getZakljucena() );
+        preduzece = preduzeceMapper.toDtoId( s.getPreduzece() );
+        id = s.getId();
+        godina = s.getGodina();
+        zakljucena = s.getZakljucena();
+
+        PoslovnaGodinaDTO poslovnaGodinaDTO = new PoslovnaGodinaDTO( id, godina, zakljucena, preduzece );
 
         return poslovnaGodinaDTO;
     }
@@ -85,9 +91,15 @@ public class PoslovnaGodinaMapperImpl implements PoslovnaGodinaMapper {
             return null;
         }
 
-        PoslovnaGodinaDTO poslovnaGodinaDTO = new PoslovnaGodinaDTO();
+        Long id = null;
 
-        poslovnaGodinaDTO.setId( poslovnaGodina.getId() );
+        id = poslovnaGodina.getId();
+
+        Integer godina = null;
+        Boolean zakljucena = null;
+        PreduzeceDTO preduzece = null;
+
+        PoslovnaGodinaDTO poslovnaGodinaDTO = new PoslovnaGodinaDTO( id, godina, zakljucena, preduzece );
 
         return poslovnaGodinaDTO;
     }
