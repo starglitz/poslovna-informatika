@@ -6,11 +6,12 @@ import javax.annotation.processing.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pi.likvidatura.domain.StavkaIzvoda;
+import pi.likvidatura.service.dto.DnevnoStanjeDTO;
 import pi.likvidatura.service.dto.StavkaIzvodaDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-07T21:14:32+0100",
+    date = "2021-12-26T12:22:46+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -38,6 +39,7 @@ public class StavkaIzvodaMapperImpl implements StavkaIzvodaMapper {
         stavkaIzvoda.setModel( dto.getModel() );
         stavkaIzvoda.setPozivNaBroj( dto.getPozivNaBroj() );
         stavkaIzvoda.dnevnoStanje( dnevnoStanjeMapper.toEntity( dto.getDnevnoStanje() ) );
+        stavkaIzvoda.setIskorisceniIznos( dto.getIskorisceniIznos() );
 
         return stavkaIzvoda;
     }
@@ -76,19 +78,33 @@ public class StavkaIzvodaMapperImpl implements StavkaIzvodaMapper {
             return null;
         }
 
-        StavkaIzvodaDTO stavkaIzvodaDTO = new StavkaIzvodaDTO();
+        DnevnoStanjeDTO dnevnoStanje = null;
+        Long id = null;
+        Integer brojStavke = null;
+        Double iznos = null;
+        String duznik = null;
+        String svrhaPlacanja = null;
+        String primalac = null;
+        String racunDuznika = null;
+        String racunPrimaoca = null;
+        Integer model = null;
+        String pozivNaBroj = null;
+        Double iskorisceniIznos = null;
 
-        stavkaIzvodaDTO.setDnevnoStanje( dnevnoStanjeMapper.toDtoId( s.getDnevnoStanje() ) );
-        stavkaIzvodaDTO.setId( s.getId() );
-        stavkaIzvodaDTO.setBrojStavke( s.getBrojStavke() );
-        stavkaIzvodaDTO.setIznos( s.getIznos() );
-        stavkaIzvodaDTO.setDuznik( s.getDuznik() );
-        stavkaIzvodaDTO.setSvrhaPlacanja( s.getSvrhaPlacanja() );
-        stavkaIzvodaDTO.setPrimalac( s.getPrimalac() );
-        stavkaIzvodaDTO.setRacunDuznika( s.getRacunDuznika() );
-        stavkaIzvodaDTO.setRacunPrimaoca( s.getRacunPrimaoca() );
-        stavkaIzvodaDTO.setModel( s.getModel() );
-        stavkaIzvodaDTO.setPozivNaBroj( s.getPozivNaBroj() );
+        dnevnoStanje = dnevnoStanjeMapper.toDtoId( s.getDnevnoStanje() );
+        id = s.getId();
+        brojStavke = s.getBrojStavke();
+        iznos = s.getIznos();
+        duznik = s.getDuznik();
+        svrhaPlacanja = s.getSvrhaPlacanja();
+        primalac = s.getPrimalac();
+        racunDuznika = s.getRacunDuznika();
+        racunPrimaoca = s.getRacunPrimaoca();
+        model = s.getModel();
+        pozivNaBroj = s.getPozivNaBroj();
+        iskorisceniIznos = s.getIskorisceniIznos();
+
+        StavkaIzvodaDTO stavkaIzvodaDTO = new StavkaIzvodaDTO( id, brojStavke, iznos, duznik, svrhaPlacanja, primalac, racunDuznika, racunPrimaoca, model, pozivNaBroj, dnevnoStanje, iskorisceniIznos );
 
         return stavkaIzvodaDTO;
     }

@@ -36,6 +36,8 @@ public class IzlaznaFaktura implements Serializable {
     @ManyToOne
     private PoslovniPartner poslovniPartner;
 
+    private boolean zatvorena;
+
     public Long getId() {
         return this.id;
     }
@@ -50,13 +52,14 @@ public class IzlaznaFaktura implements Serializable {
     public IzlaznaFaktura(Long id, String brojFakture,
                           Double iznosZaPlacanje,
                           PoslovnaGodina poslovnaGodina,
-                          PoslovniPartner poslovniPartner,Double isplaceniIznos) {
+                          PoslovniPartner poslovniPartner,Double isplaceniIznos, boolean zatvorena) {
         this.id = id;
         this.brojFakture = brojFakture;
         this.iznosZaPlacanje = iznosZaPlacanje;
         this.poslovnaGodina = poslovnaGodina;
         this.poslovniPartner = poslovniPartner;
         this.isplaceniIznos = isplaceniIznos;
+        this.zatvorena = zatvorena;
     }
 
     public void setId(Long id) {
@@ -116,6 +119,14 @@ public class IzlaznaFaktura implements Serializable {
 
     public void setIsplaceniIznos(Double isplaceniIznos) {
         this.isplaceniIznos = isplaceniIznos;
+    }
+
+    public boolean isZatvorena() {
+        return zatvorena;
+    }
+
+    public void setZatvorena(boolean zatvorena) {
+        this.zatvorena = zatvorena;
     }
 
     @Override

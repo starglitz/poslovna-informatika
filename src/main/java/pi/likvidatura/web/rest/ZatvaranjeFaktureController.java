@@ -8,9 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pi.likvidatura.service.ZatvaranjeFaktureService;
+import pi.likvidatura.service.dto.IzlaznaFakturaDTO;
 import pi.likvidatura.service.dto.StavkaIzvodaDTO;
 import pi.likvidatura.service.dto.ZatvaranjeFaktureDTO;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -24,10 +28,11 @@ public class ZatvaranjeFaktureController {
     private ZatvaranjeFaktureService zatvaranjeFaktureService;
 
     @GetMapping()
-    public Page<ZatvaranjeFaktureDTO> getAllZatvaranja(
-            @RequestParam(defaultValue="0") int pageNum) {
+    public List<ZatvaranjeFaktureDTO> getAllZatvaranja(
+            @RequestParam(required = false) Long fakturaId,
+            @RequestParam(required = false) Long stavkaId) {
         log.debug("REST request to get all");
-        return zatvaranjeFaktureService.findAll(pageNum);
+        return zatvaranjeFaktureService.findAll(fakturaId, stavkaId);
     }
 
     @GetMapping("/{id}")
@@ -40,5 +45,17 @@ public class ZatvaranjeFaktureController {
         return ResponseEntity
                 .ok()
                 .body(zatvaranjeFaktureDTO.get());
+    }
+
+    @PostMapping
+    public ResponseEntity zatvoriFakturu(@RequestBody ZatvaranjeFaktureDTO zatvaranjeFaktureDTO)
+            throws URISyntaxException {
+        if (zatvaranjeFaktureDTO.getId() != null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        ZatvaranjeFaktureDTO result = zatvaranjeFaktureService.zatvoriFakturu(zatvaranjeFaktureDTO);
+        return ResponseEntity
+                .created(new URI("/api/zatvaranje-fakture/" + result.getId()))
+                .body(result);
     }
 }

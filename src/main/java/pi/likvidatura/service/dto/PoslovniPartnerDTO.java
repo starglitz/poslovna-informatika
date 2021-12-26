@@ -1,5 +1,7 @@
 package pi.likvidatura.service.dto;
 
+import pi.likvidatura.domain.PoslovniPartner;
+
 public class PoslovniPartnerDTO {
 
     private Long id;
@@ -49,5 +51,10 @@ public class PoslovniPartnerDTO {
 
     public void setTelefon(String telefon) {
         this.telefon = telefon;
+    }
+
+    public static PoslovniPartnerDTO fromEntity(PoslovniPartner partner) {
+        return new PoslovniPartnerDTO(partner.getId(), partner.getNaziv(), partner.getAdresa(),
+                partner.getTelefon());
     }
 }

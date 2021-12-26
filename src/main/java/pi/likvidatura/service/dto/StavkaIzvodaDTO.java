@@ -19,6 +19,8 @@ public class StavkaIzvodaDTO implements Serializable {
 
     private Double iznos;
 
+    private Double iskorisceniIznos;
+
     private String duznik;
 
     private String svrhaPlacanja;
@@ -38,7 +40,7 @@ public class StavkaIzvodaDTO implements Serializable {
     public StavkaIzvodaDTO(Long id, Integer brojStavke,
                            Double iznos, String duznik, String svrhaPlacanja,
                            String primalac, String racunDuznika, String racunPrimaoca,
-                           Integer model, String pozivNaBroj, DnevnoStanjeDTO dnevnoStanje) {
+                           Integer model, String pozivNaBroj, DnevnoStanjeDTO dnevnoStanje, Double iskorisceniIznos) {
         this.id = id;
         this.brojStavke = brojStavke;
         this.iznos = iznos;
@@ -50,6 +52,7 @@ public class StavkaIzvodaDTO implements Serializable {
         this.model = model;
         this.pozivNaBroj = pozivNaBroj;
         this.dnevnoStanje = dnevnoStanje;
+        this.iskorisceniIznos = iskorisceniIznos;
     }
 
     public Long getId() {
@@ -140,6 +143,14 @@ public class StavkaIzvodaDTO implements Serializable {
         this.dnevnoStanje = dnevnoStanje;
     }
 
+    public Double getIskorisceniIznos() {
+        return iskorisceniIznos;
+    }
+
+    public void setIskorisceniIznos(Double iskorisceniIznos) {
+        this.iskorisceniIznos = iskorisceniIznos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -184,7 +195,8 @@ public class StavkaIzvodaDTO implements Serializable {
                 stavka.getDuznik(), stavka.getSvrhaPlacanja(), stavka.getPrimalac(),
                 stavka.getRacunDuznika(), stavka.getRacunPrimaoca(),
                 stavka.getModel(), stavka.getPozivNaBroj(),
-                DnevnoStanjeDTO.fromEntity(stavka.getDnevnoStanje()));
+                DnevnoStanjeDTO.fromEntity(stavka.getDnevnoStanje()),
+                stavka.getIskorisceniIznos());
     }
 
     public static List<StavkaIzvodaDTO> fromEntityList(List<StavkaIzvoda> stavke) {
