@@ -1,7 +1,10 @@
 package pi.likvidatura.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.web.multipart.MultipartFile;
 import pi.likvidatura.service.dto.DnevnoStanjeDTO;
 
 import javax.swing.text.Document;
@@ -39,4 +42,6 @@ public interface DnevnoStanjeService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    void uploadFile(MultipartFile file) throws IOException;
 }

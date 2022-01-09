@@ -1,0 +1,62 @@
+{
+  "brojIzvoda": 3,
+  "datumIzvoda": "2021-12-24",
+  "prethodnoStanje": 7000,
+  "prometUKorist": 10000,
+  "prometNaTeret": 0,
+  "novoStanje": 10000,
+  "rezervisano": 0,
+  "bankarskiRacun": {
+    "id": 1,
+    "brojRacuna": "535523218080",
+    "preduzece": {
+      "id": 1,
+      "naziv": "Glavno Preduzece",
+      "pib": "321321313",
+      "maticniBroj": "2398719137891"
+    },
+    "banka": {
+      "id": 1,
+      "sifra": "111",
+      "naziv": "UniCredit"
+    }
+  },
+  "stavkaIzvodas": [
+    {
+      "brojStavke": 1,
+      "iznos": 1000,
+      "iskorisceniIznos": 0,
+      "duznik": "Marko Markovic",
+      "svrhaPlacanja": "placanje racuna",
+      "primalac": "Glavno preduzece",
+      "racunDuznika": "43225532422",
+      "racunPrimaoca": "5454543455",
+      "model": 98,
+      "pozivNaBroj": "656577565654"
+    },
+    {
+      "brojStavke": 2,
+      "iznos": 6000,
+      "iskorisceniIznos": 0,
+      "duznik": "Petar Petrovic",
+      "svrhaPlacanja": "uplata",
+      "primalac": "Glavno preduzece",
+      "racunDuznika": "231232141424",
+      "racunPrimaoca": "5454543455",
+      "model": 98,
+      "pozivNaBroj": "656577565654"
+    },
+    {
+      "brojStavke": 1,
+      "iznos": 3000,
+      "iskorisceniIznos": 0,
+      "duznik": "Marko Markovic",
+      "svrhaPlacanja": "placanje racuna 2",
+      "primalac": "Glavno preduzece",
+      "racunDuznika": "43225532422",
+      "racunPrimaoca": "5454543455",
+      "model": 98,
+      "pozivNaBroj": "656577565654"
+    }
+  ]
+}

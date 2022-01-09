@@ -11,8 +11,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -105,11 +108,13 @@ public class IzlaznaFakturaController {
     }
 
     @GetMapping("/pdf")
-    public ResponseEntity<Document> getPdf(@RequestParam Long poslovniPartnerId)
+    public ResponseEntity<Object> getPdf(@RequestParam Long poslovniPartnerId)
             throws FileNotFoundException, DocumentException {
-        Document pdf = izlaznaFakturaService.generatePdf(poslovniPartnerId);
-        return ResponseEntity
-                .ok()
-                .body(pdf);
+        var pdf = izlaznaFakturaService.generatePdf(poslovniPartnerId);
+        var headers = new HttpHeaders();
+        headers.setContentLength(pdf.available());
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        var isr = new InputStreamResource(pdf);
+        return new ResponseEntity(isr, headers, HttpStatus.OK);
     }
 }

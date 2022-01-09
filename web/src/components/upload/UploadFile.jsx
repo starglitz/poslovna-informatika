@@ -1,11 +1,13 @@
 import { Button } from "antd";
 import { useState } from "react";
+import { DnevnoStanjeService } from "../../service/DnevnoStanjeService";
 
 const UploadFile = () => {
   const [file, setFile] = useState({});
 
   async function uploadDnevnoStanje() {
     console.log(file);
+    await DnevnoStanjeService.uploadDnevnoStanje(file);
   }
 
   const onFileChange = (e) => {

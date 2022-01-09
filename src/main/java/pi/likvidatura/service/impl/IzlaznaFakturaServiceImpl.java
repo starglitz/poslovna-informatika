@@ -1,14 +1,11 @@
 package pi.likvidatura.service.impl;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.slf4j.Logger;
@@ -83,7 +80,7 @@ public class IzlaznaFakturaServiceImpl implements IzlaznaFakturaService {
     }
 
     @Override
-    public Document generatePdf(Long poslovniPartnerId)
+    public ByteArrayInputStream generatePdf(Long poslovniPartnerId)
             throws DocumentException, FileNotFoundException {
 
         List<IzlaznaFaktura> fakturePartnera = izlaznaFakturaRepository.findByPoslovniPartner(poslovniPartnerId);
@@ -99,8 +96,9 @@ public class IzlaznaFakturaServiceImpl implements IzlaznaFakturaService {
 
         String home = System.getProperty("user.home");
 
-        PdfWriter.getInstance(document, new FileOutputStream(home +
-                "/Downloads/knjiga-izlaznih-faktura.pdf", true));
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        PdfWriter.getInstance(document, bos);
 
         document.open();
         Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
@@ -127,6 +125,6 @@ public class IzlaznaFakturaServiceImpl implements IzlaznaFakturaService {
         }
 
         document.close();
-        return document;
+        return new ByteArrayInputStream(bos.toByteArray());
     }
 }

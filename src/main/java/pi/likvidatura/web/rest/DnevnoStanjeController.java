@@ -1,5 +1,6 @@
 package pi.likvidatura.web.rest;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import pi.likvidatura.repository.DnevnoStanjeRepository;
 import pi.likvidatura.service.DnevnoStanjeService;
 import pi.likvidatura.service.dto.DnevnoStanjeDTO;
@@ -95,5 +97,11 @@ public class DnevnoStanjeController {
         return ResponseEntity
             .noContent()
             .build();
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<Void> uploadDnevnoStanjeFile(@RequestBody MultipartFile fajl) throws IOException {
+        dnevnoStanjeService.uploadFile(fajl);
+        return ResponseEntity.noContent().build();
     }
 }

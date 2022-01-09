@@ -21,7 +21,11 @@ const DownloadPdf = () => {
     if (selectedPartner.id == null) {
       toggleShowToast(true);
     } else {
-      await InvoiceService.getPdf(selectedPartner);
+      const pdf = await InvoiceService.getPdf(selectedPartner);
+      console.log({ pdf });
+      const filePdf = new Blob([pdf], { type: "application/pdf" });
+      const fileUrl = URL.createObjectURL(filePdf);
+      window.open(fileUrl, "_blank");
     }
   }
 
