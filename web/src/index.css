@@ -108,12 +108,13 @@ code {
 
 .invoices-div {
   display: inline-block;
-  width: 50%;
+  width: 40%;
   padding: 0 40px;
 }
 
 .stavke-div {
   display: inline-block;
+  width: 60%;
 }
 
 .table-wrapper {
@@ -135,9 +136,15 @@ code {
   margin: 0 auto;
 }
 
-.selected-div {
+.selected-div-invoice {
   display: inline-block;
-  width: 50%;
+  width: 40%;
+  padding: 0 40px;
+}
+
+.selected-div-stavka {
+  display: inline-block;
+  width: 60%;
   padding: 0 40px;
 }
 

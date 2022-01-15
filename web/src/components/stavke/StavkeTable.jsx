@@ -19,6 +19,7 @@ const StavkeTable = (props) => {
   async function fetchStavke(query, page) {
     const response = await StavkeService.fetchStavke(query, page);
     setStavke(response.content);
+    console.log(response.content);
     setTotalElements(response.totalElements);
   }
 
@@ -64,6 +65,7 @@ const StavkeTable = (props) => {
             <th>ID</th>
             <th>Broj stavke</th>
             <th>Iznos za placanje</th>
+            <th>Od toga dostupno</th>
             <th>Duznik</th>
             <th>Svrha placanja</th>
             <th>Primalac</th>
@@ -75,6 +77,7 @@ const StavkeTable = (props) => {
               <td>{stavka.id}</td>
               <td>{stavka.brojStavke}</td>
               <td>{stavka.iznos}</td>
+              <td>{stavka.iznos - stavka.iskorisceniIznos}</td>
               <td>{stavka.duznik}</td>
               <td>{stavka.svrhaPlacanja}</td>
               <td>{stavka.primalac}</td>

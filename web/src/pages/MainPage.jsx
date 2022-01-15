@@ -35,6 +35,7 @@ const MainPage = () => {
       <ZatvaranjeFaktureTable
         invoice={selectedInvoice}
         stavka={selectedStavka}
+        onSelectedInvoiceChange={onSelectedInvoiceChange}
       ></ZatvaranjeFaktureTable>
       <DownloadPdf></DownloadPdf>
       <UploadFile></UploadFile>

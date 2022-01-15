@@ -17,8 +17,8 @@ import java.util.List;
 public interface IzlaznaFakturaRepository extends JpaRepository<IzlaznaFaktura, Long> {
 
     @Query("SELECT f FROM IzlaznaFaktura f WHERE "
-            + "f.brojFakture like %:brojFakture%")
-    Page<IzlaznaFaktura> findByBrojFakture(String brojFakture, Pageable pageable);
+            + "f.brojFakture like %:brojFakture% and f.zatvorena = false")
+    Page<IzlaznaFaktura> findByBrojFaktureNezatvorene(String brojFakture, Pageable pageable);
 
     @Query("SELECT f FROM IzlaznaFaktura f WHERE "
             + "f.poslovniPartner.id = :poslovniPartnerId")

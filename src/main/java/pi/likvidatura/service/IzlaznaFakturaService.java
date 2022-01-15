@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.util.Optional;
 
-import com.itextpdf.text.DocumentException;
 import org.springframework.data.domain.Page;
 import pi.likvidatura.service.dto.IzlaznaFakturaDTO;
 
@@ -43,5 +42,5 @@ public interface IzlaznaFakturaService {
      */
     void delete(Long id);
 
-    ByteArrayInputStream generatePdf(Long poslovniPartnerId) throws DocumentException, FileNotFoundException;
+    ByteArrayInputStream generatePdf(Long poslovniPartnerId) throws FileNotFoundException;
 }

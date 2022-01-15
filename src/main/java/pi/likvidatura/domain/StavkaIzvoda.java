@@ -57,6 +57,9 @@ public class StavkaIzvoda implements Serializable {
     @ManyToOne
     private DnevnoStanje dnevnoStanje;
 
+    @Column(name = "verzija")
+    private int verzija;
+
     public Long getId() {
         return this.id;
     }
@@ -207,6 +210,10 @@ public class StavkaIzvoda implements Serializable {
     public void setIskorisceniIznos(Double iskorisceniIznos) {
         this.iskorisceniIznos = iskorisceniIznos;
     }
+
+    public int getVerzija() { return verzija; }
+
+    public void setVerzija(int verzija) { this.verzija = verzija; }
 
     @Override
     public boolean equals(Object o) {

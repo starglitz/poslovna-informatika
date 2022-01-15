@@ -63,6 +63,7 @@ const InvoiceTable = (props) => {
             <th>ID</th>
             <th>Broj fakture</th>
             <th>Iznos za placanje</th>
+            <th>Preostalo za isplatu</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +72,7 @@ const InvoiceTable = (props) => {
               <td>{invoice.id}</td>
               <td>{invoice.brojFakture}</td>
               <td>{invoice.iznosZaPlacanje}</td>
+              <td>{invoice.iznosZaPlacanje - invoice.isplaceniIznos}</td>
             </tr>
           ))}
         </tbody>

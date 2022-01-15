@@ -22,7 +22,6 @@ const DownloadPdf = () => {
       toggleShowToast(true);
     } else {
       const pdf = await InvoiceService.getPdf(selectedPartner);
-      console.log({ pdf });
       const filePdf = new Blob([pdf], { type: "application/pdf" });
       const fileUrl = URL.createObjectURL(filePdf);
       window.open(fileUrl, "_blank");

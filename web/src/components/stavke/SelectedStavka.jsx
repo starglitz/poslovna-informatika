@@ -3,7 +3,7 @@ import StavkeRow from "./StavkeRow";
 
 const SelectedStavka = (props) => {
   return (
-    <div className="selected-div">
+    <div className="selected-div-stavka">
       <div className="margin inline">
         <span className="align-left margin font-size-1">Izabrana stavka</span>
         <div className="align-left margin inline margin-sm-top"></div>

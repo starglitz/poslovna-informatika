@@ -12,6 +12,7 @@ import pi.likvidatura.domain.ZatvaranjeFakture;
 import pi.likvidatura.exception.FakturaVecZatvorenaException;
 import pi.likvidatura.exception.NedovoljnoSredstavaException;
 import pi.likvidatura.exception.NeispravanIznosException;
+import pi.likvidatura.exception.RazliciteVerzijeStavkeException;
 import pi.likvidatura.repository.IzlaznaFakturaRepository;
 import pi.likvidatura.repository.StavkaIzvodaRepository;
 import pi.likvidatura.repository.ZatvaranjeFaktureRepository;
@@ -61,15 +62,15 @@ public class ZatvaranjeFaktureServiceImpl implements ZatvaranjeFaktureService {
         StavkaIzvodaDTO stavka = zatvaranjeFaktureDTO.getStavkaIzvoda();
 
         stavka.setIskorisceniIznos(stavka.getIskorisceniIznos() + zatvaranjeFaktureDTO.getIznos());
+        stavka.setVerzija(stavka.getVerzija() + 1);
         faktura.setIsplaceniIznos(faktura.getIsplaceniIznos() + zatvaranjeFaktureDTO.getIznos());
 
         if(faktura.getIsplaceniIznos().equals(faktura.getIznosZaPlacanje())) {
             faktura.setZatvorena(true);
         }
-        //ovde ce trebati optimisticko zakljucavanje?
+
         stavkaIzvodaRepository.save(stavkaIzvodaMapper.toEntity(stavka));
         izlaznaFakturaRepository.save(izlaznaFakturaMapper.toEntity(faktura));
-
 
         ZatvaranjeFakture zatvaranje = zatvaranjeFaktureRepository.save(zatvaranjeFaktureMapper.toEntity(zatvaranjeFaktureDTO));
 
@@ -95,6 +96,11 @@ public class ZatvaranjeFaktureServiceImpl implements ZatvaranjeFaktureService {
 
         if(Double.compare(raspolozivoSaStavke, zatvaranjeFaktureDTO.getIznos()) < 0) {
             throw new NedovoljnoSredstavaException("Stavka ima manje raspolozivog novca nego sto je trazeni iznos");
+        }
+
+        StavkaIzvoda stavkaDb = stavkaIzvodaRepository.getById(zatvaranjeFaktureDTO.getStavkaIzvoda().getId());
+        if(stavkaDb.getVerzija() != zatvaranjeFaktureDTO.getStavkaIzvoda().getVerzija()) {
+            throw new RazliciteVerzijeStavkeException("Verzije stavke izvoda se ne poklapaju");
         }
 
     }

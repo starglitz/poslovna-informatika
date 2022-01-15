@@ -3,7 +3,7 @@ import InvoiceRow from "./InvoiceRow";
 
 const SelectedInvoice = (props) => {
   return (
-    <div className="selected-div">
+    <div className="selected-div-invoice">
       <div className="margin inline">
         <span className="align-left margin font-size-1">Izabrana faktura</span>
         <div className="align-left margin inline margin-sm-top"></div>

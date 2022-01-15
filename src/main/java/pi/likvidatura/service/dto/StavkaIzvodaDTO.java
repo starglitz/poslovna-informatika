@@ -37,10 +37,13 @@ public class StavkaIzvodaDTO implements Serializable {
 
     private DnevnoStanjeDTO dnevnoStanje;
 
+    private int verzija;
+
     public StavkaIzvodaDTO(Long id, Integer brojStavke,
                            Double iznos, String duznik, String svrhaPlacanja,
                            String primalac, String racunDuznika, String racunPrimaoca,
-                           Integer model, String pozivNaBroj, DnevnoStanjeDTO dnevnoStanje, Double iskorisceniIznos) {
+                           Integer model, String pozivNaBroj, DnevnoStanjeDTO dnevnoStanje,
+                           Double iskorisceniIznos, int verzija) {
         this.id = id;
         this.brojStavke = brojStavke;
         this.iznos = iznos;
@@ -53,6 +56,7 @@ public class StavkaIzvodaDTO implements Serializable {
         this.pozivNaBroj = pozivNaBroj;
         this.dnevnoStanje = dnevnoStanje;
         this.iskorisceniIznos = iskorisceniIznos;
+        this.verzija = verzija;
     }
 
     public Long getId() {
@@ -151,6 +155,14 @@ public class StavkaIzvodaDTO implements Serializable {
         this.iskorisceniIznos = iskorisceniIznos;
     }
 
+    public int getVerzija() {
+        return verzija;
+    }
+
+    public void setVerzija(int verzija) {
+        this.verzija = verzija;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -196,7 +208,7 @@ public class StavkaIzvodaDTO implements Serializable {
                 stavka.getRacunDuznika(), stavka.getRacunPrimaoca(),
                 stavka.getModel(), stavka.getPozivNaBroj(),
                 DnevnoStanjeDTO.fromEntity(stavka.getDnevnoStanje()),
-                stavka.getIskorisceniIznos());
+                stavka.getIskorisceniIznos(), stavka.getVerzija());
     }
 
     public static List<StavkaIzvodaDTO> fromEntityList(List<StavkaIzvoda> stavke) {

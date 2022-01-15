@@ -13,7 +13,7 @@ import pi.likvidatura.service.dto.PoslovniPartnerDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-26T23:10:44+0100",
+    date = "2022-01-15T13:23:32+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component

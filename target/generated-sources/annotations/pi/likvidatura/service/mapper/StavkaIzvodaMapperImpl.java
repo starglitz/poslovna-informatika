@@ -11,7 +11,7 @@ import pi.likvidatura.service.dto.StavkaIzvodaDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-26T23:10:45+0100",
+    date = "2022-01-15T13:23:32+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.13 (Oracle Corporation)"
 )
 @Component
@@ -40,6 +40,7 @@ public class StavkaIzvodaMapperImpl implements StavkaIzvodaMapper {
         stavkaIzvoda.setPozivNaBroj( dto.getPozivNaBroj() );
         stavkaIzvoda.dnevnoStanje( dnevnoStanjeMapper.toEntity( dto.getDnevnoStanje() ) );
         stavkaIzvoda.setIskorisceniIznos( dto.getIskorisceniIznos() );
+        stavkaIzvoda.setVerzija( dto.getVerzija() );
 
         return stavkaIzvoda;
     }
@@ -90,6 +91,7 @@ public class StavkaIzvodaMapperImpl implements StavkaIzvodaMapper {
         Integer model = null;
         String pozivNaBroj = null;
         Double iskorisceniIznos = null;
+        int verzija = 0;
 
         dnevnoStanje = dnevnoStanjeMapper.toDtoId( s.getDnevnoStanje() );
         id = s.getId();
@@ -103,8 +105,9 @@ public class StavkaIzvodaMapperImpl implements StavkaIzvodaMapper {
         model = s.getModel();
         pozivNaBroj = s.getPozivNaBroj();
         iskorisceniIznos = s.getIskorisceniIznos();
+        verzija = s.getVerzija();
 
-        StavkaIzvodaDTO stavkaIzvodaDTO = new StavkaIzvodaDTO( id, brojStavke, iznos, duznik, svrhaPlacanja, primalac, racunDuznika, racunPrimaoca, model, pozivNaBroj, dnevnoStanje, iskorisceniIznos );
+        StavkaIzvodaDTO stavkaIzvodaDTO = new StavkaIzvodaDTO( id, brojStavke, iznos, duznik, svrhaPlacanja, primalac, racunDuznika, racunPrimaoca, model, pozivNaBroj, dnevnoStanje, iskorisceniIznos, verzija );
 
         return stavkaIzvodaDTO;
     }
